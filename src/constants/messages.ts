@@ -1,0 +1,16 @@
+export const MESSAGES = {
+  UNAUTHORIZED: 'Unauthorized',
+  FORBIDDEN: 'Forbidden',
+  INVALID_TOKEN: 'Invalid token',
+  MISSING_AUTH: 'Missing or invalid Authorization header',
+  SUCCESS: 'Success',
+  ADMIN_ONLY: 'Admin only route',
+  AUTHENTICATED: 'Authenticated',
+  PUBLIC: 'Public API - no auth',
+  EMAIL_EXISTS: 'Email is already registered',
+  ADMIN_NOT_ALLOWED: 'Role admin not allowed!',
+  SIGNUP_SUCCESS: 'Signup successful',
+  LOGIN_SUCCESS: 'Login successful',
+  USER_NOT_FOUND: 'User not found',
+  PASSWORD_INVALID: 'Invalid password',
+}
