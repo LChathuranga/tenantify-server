@@ -2,6 +2,7 @@ import { DataTypes, Model, Optional } from 'sequelize'
 import { UserAttributes } from '../types/user'
 import sequelize from '../config/database'
 import { UserRole } from '../types/userRole'
+import { Store } from './Store';
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 
@@ -15,6 +16,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> {
   public createdAt!: Date
   public updatedAt!: Date
   public lastLogin!: Date
+  public store?: Store;
 
   toJSON() {
     const attributes = { ...this.get() }
@@ -54,7 +56,7 @@ User.init(
     role: {
       type: DataTypes.ENUM(...Object.values(UserRole)),
       allowNull: false,
-      defaultValue: UserRole.ROLE_USER,
+      defaultValue: UserRole.ROLE_STORE_ADMIN,
     },
     password: {
       type: DataTypes.STRING,

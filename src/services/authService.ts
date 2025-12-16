@@ -1,7 +1,7 @@
 import { AuthResponse } from '../dto/AuthResponse'
 
 import { User } from '../model/User'
-import { generateJwt } from '../utils/jwt'
+import { generateJwt } from '../utils/jwtProvider'
 import { UserAttributes } from '../types/user'
 import { UserRole } from '../types/userRole'
 import { comparePassword, hashPassword } from '../utils/password'
@@ -17,7 +17,6 @@ export async function signup(userData: UserAttributes): Promise<AuthResponse> {
       throw new Error(MESSAGES.ADMIN_NOT_ALLOWED)
     }
     userData.password = await hashPassword(userData.password!)
-    console.log('--------------------', userData);
     
     const user = await User.create(userData)
     const token = generateJwt({

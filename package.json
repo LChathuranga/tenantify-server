@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "nodemon --exec tsx src/app.ts",
-    "migrate": "tsx scripts/migrate.ts"
+    "migrate": "tsx scripts/migrate.ts",
+    "dropdb": "tsx scripts/dropAllTables.ts"
   },
   "author": "",
   "license": "ISC",

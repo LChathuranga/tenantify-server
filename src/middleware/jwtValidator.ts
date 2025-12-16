@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes'
 import { MESSAGES } from '../constants/messages'
 import { JwtPayload } from '../types/jwt'
 
-export default function jwtValidator(req: Request, res: Response, next: NextFunction) {
+export default async function jwtValidator(req: Request, res: Response, next: NextFunction) {
   const auth = req.headers.authorization
   if (!auth || !auth.startsWith('Bearer ')) {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: MESSAGES.MISSING_AUTH })

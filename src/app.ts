@@ -1,11 +1,14 @@
+import './model/index';
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import corsConfig from './config/corsConfig'
-import apiRouter from './routes/api'
+import userRouter from './routes/userRouter'
 import authRouter from './routes/authRouter'
 import { logServer, logSuccess, logError, logInfo } from './utils/logger'
 import sequelize from './config/database'
+import { errorHandler } from './middleware/errorHandler'
+import storeRouter from './routes/storeRouter'
 
 const app = express()
 dotenv.config()
@@ -18,12 +21,15 @@ app.use((req, _res, next) => {
   next()
 })
 
-app.get('/', (req, res) => {
-  res.send('Hello, From Tenantify-server!')
+app.use('/api/users', userRouter)
+app.use('/api/stores', storeRouter)
+app.use('/auth', authRouter)
+
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' })
 })
 
-app.use('/api', apiRouter)
-app.use('/auth', authRouter)
+app.use(errorHandler)
 
 sequelize
   .authenticate()
